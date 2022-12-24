@@ -57,7 +57,13 @@ jobs:
         ################################################################################################
         #因不同型号配置功能不一样，所以先把配置项删除，如果你自己要添加其他的，也要写上删除这一条，切记！！！
         ################################################################################################
-        sed -i '/CONFIG_FIRMWARE_INCLUDE_MENTOHUST/d' .config #删除配置项MENTOHUST
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SOFTETHERVPN_CLIENT/d' .config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SOFTETHERVPN_CMD/d' .config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SERIAL/d' .config
+        sed -i '/CONFIG_FIRMWARE_ENABLE_USB/d' .config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_XUPNPD=n/d' .config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_OPENVPN/d' .config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_HID/d' .config #删除配置项MENTOHUST
         sed -i '/CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT/d' .config #删除配置项SCUTCLIENT
         sed -i '/CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS/d' .config #删除配置项SS plus+
         sed -i '/CONFIG_FIRMWARE_INCLUDE_SSSERVER/d' .config #删除配置项SS server
@@ -74,8 +80,13 @@ jobs:
         #以下选项是定义你需要的功能（y=集成,n=忽略），重新写入到.config文件
         ######################################################################
         if [ $KERNEL = "4.4" ] ; then
-        echo "CONFIG_FIRMWARE_INCLUDE_XUPNPD=n" >> .config
-        echo "CONFIG_FIRMWARE_INCLUDE_OPENVPN=n" >> .config
+        echo "CONFIG_FIRMWARE_INCLUDE_SOFTETHERVPN_CLIENT=n" >> .config
+        echo "CONFIG_FIRMWARE_INCLUDE_SOFTETHERVPN_CMD=n" >> .config
+        echo "#CONFIG_FIRMWARE_INCLUDE_SERIAL=n" >> .config
+        echo "#CONFIG_FIRMWARE_INCLUDE_SERIAL=y" >> .config 
+        echo "CONFIG_FIRMWARE_ENABLE_USB=y" >> .config
+        echo "CONFIG_FIRMWARE_INCLUDE_XUPNPD=n" >> .config  #IPTY
+        echo "CONFIG_FIRMWARE_INCLUDE_OPENVPN=n" >> .config  #VPN
         echo "CONFIG_FIRMWARE_INCLUDE_HID=y" >> .config
         echo "CONFIG_FIRMWARE_INCLUDE_MENTOHUST=n" >> .config #MENTOHUST
         echo "CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT=n" >> .config #SCUTCLIENT
