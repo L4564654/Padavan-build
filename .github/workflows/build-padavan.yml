@@ -57,6 +57,7 @@ jobs:
         ################################################################################################
         #因不同型号配置功能不一样，所以先把配置项删除，如果你自己要添加其他的，也要写上删除这一条，切记！！！
         ################################################################################################
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_QOS/d' .config
         sed -i '/CONFIG_FIRMWARE_INCLUDE_SFTP/d' .config
         sed -i '/CONFIG_FIRMWARE_INCLUDE_FTPD/d' .config
         sed -i '/CONFIG_FIRMWARE_INCLUDE_NTFS_3G/d' .config
@@ -112,8 +113,9 @@ jobs:
         echo "CONFIG_FIRMWARE_INCLUDE_ZEROTIER=y" >> .config #zerotier ~1.3M
         echo "CONFIG_FIRMWARE_INCLUDE_ALIDDNS=n" >> .config #aliddns
         else
+        echo "CONFIG_FIRMWARE_INCLUDE_QOS=y" >> .config
         echo "CONFIG_FIRMWARE_INCLUDE_NTFS_3G=y" >> .config
-        echo "CONFIG_FIRMWARE_INCLUDE_SMBD36=y" >> .config
+        echo "CONFIG_FIRMWARE_INCLUDE_SMBD36=n" >> .config
         echo "CONFIG_FIRMWARE_INCLUDE_CIFS=y" >> .config
         echo "CONFIG_FIRMWARE_INCLUDE_NFSC=y" >> .config
         echo "CONFIG_FIRMWARE_INCLUDE_SFTP=n" >> .config
