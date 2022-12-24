@@ -57,9 +57,9 @@ jobs:
         ################################################################################################
         #因不同型号配置功能不一样，所以先把配置项删除，如果你自己要添加其他的，也要写上删除这一条，切记！！！
         ################################################################################################
-        sed -i 'CONFIG_FIRMWARE_INCLUDE_SFTP/d' .config
-        sed -i 'CONFIG_FIRMWARE_INCLUDE_DDNS_SSL/d' .config
-        sed -i 'CONFIG_FIRMWARE_INCLUDE_SMBD/d' .config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SFTP/d' .config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_DDNS_SSL/d' .config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SMBD/d' .config
         sed -i '/CONFIG_FIRMWARE_INCLUDE_AUDIO/d' .config
         sed -i '/CONFIG_FIRMWARE_INCLUDE_OPENVPN/d' .config
         sed -i '/CONFIG_FIRMWARE_INCLUDE_SERIAL/d' .config
